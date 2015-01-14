@@ -1,0 +1,30 @@
+---
+# This playbook deploys the whole application stack in this site.
+
+# Make sure the facts of all servers are available for the role to be applied
+- hosts: all
+  tasks: []
+
+# Configure and deploy database servers.
+- hosts: dbservers
+  sudo: True
+  roles:
+  - db
+
+# Configure and deploy the web servers.
+- hosts: webservers
+  sudo: True
+  roles:
+  - web
+
+# Configure and deploy the load balancer(s).
+- hosts: lbservers
+  sudo: True
+  roles:
+  - haproxy
+
+# Configure and deploy the Nagios monitoring node(s).
+- hosts: monitoring
+  sudo: True
+  roles:
+  - nagios
