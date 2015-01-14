@@ -36,6 +36,10 @@
   service: name=ntpd state=started enabled=true
   tags: ntp
 
+- name: Start the nrpe service
+  service: name=nrpe state=started enabled=true
+  tags: nrpe
+
 - name: insert iptables template
   template: src=iptables.j2 dest=/etc/sysconfig/iptables
   notify: restart iptables
